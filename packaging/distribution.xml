@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>QUARRY by kalabash</title>
+    <organization>com.kalabash</organization>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <conclusion file="conclusion.html" mime-type="text/html"/>
+    <options customize="allow" require-scripts="false" rootVolumeOnly="true" hostArchitectures="arm64,x86_64"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <volume-check><allowed-os-versions><os-version min="10.13"/></allowed-os-versions></volume-check>
+
+    <choices-outline>
+        <line choice="standalone"/>
+        <line choice="vst3"/>
+        <line choice="au"/>
+    </choices-outline>
+
+    <choice id="standalone" title="QUARRY standalone app"
+            description="The standalone QUARRY app, installed in /Applications.">
+        <pkg-ref id="com.kalabash.quarry.standalone"/>
+    </choice>
+    <choice id="vst3" title="VST3 plug-ins"
+            description="QUARRY (instrument) and QUARRY FX (audio effect) for VST3 hosts. Installed in /Library/Audio/Plug-Ins/VST3.">
+        <pkg-ref id="com.kalabash.quarry.vst3"/>
+    </choice>
+    <choice id="au" title="Audio Unit plug-ins"
+            description="QUARRY (instrument) and QUARRY FX (audio effect) for Logic Pro, GarageBand, Ableton Live and other AU hosts. Installed in /Library/Audio/Plug-Ins/Components.">
+        <pkg-ref id="com.kalabash.quarry.au"/>
+    </choice>
+
+    <pkg-ref id="com.kalabash.quarry.standalone" version="@VERSION@" onConclusion="none">standalone.pkg</pkg-ref>
+    <pkg-ref id="com.kalabash.quarry.vst3" version="@VERSION@" onConclusion="none">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.kalabash.quarry.au" version="@VERSION@" onConclusion="none">au.pkg</pkg-ref>
+</installer-gui-script>
